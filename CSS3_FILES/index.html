@@ -1,0 +1,230 @@
+<!-- 
+	Michael Wilson
+	This html file is going to be used as a demonstration for 
+	the bootstrap WICS workshop (2/22/2017)
+-->
+
+<!DOCTYPE html>
+<head>
+	<title>WICS BOOTSTRAP</title>
+
+	<!-- LINK TO BOOTSTRAP CSS -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- LINK TO MY CSS -->
+	<link rel="stylesheet" type="text/css" href="page.css">
+
+	<!-- LINK TO THE JQUERY -->
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+
+	<!-- LINK TO BOOTSTRAP JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<!-- ADD THE SCROLL SPY -->
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				
+				<!-- THIS ALLOWS US TO DO THE HAMBRUGER -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					
+					<!-- ADD THE ICONS FOR THE BURGER -->
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand">WICS</a>
+			</div>
+
+			<!-- THE INFORMATION THAT SHALL COLLAPSE ONCE THE WEB PAGES SCREEN SIZE BECOMES TOO SMALL -->
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="#top">Home</a>
+					</li>
+					<li>
+						<a href="#meetings">Meetings</a>
+					</li>
+					<li>
+						<a href="#officers">Officers</a>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown">Events<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#hackathons"><span class="glyphicon glyphicon-barcode"> Hackathons</span></a>
+							</li>
+							<li>
+								<a href="#meet-ups"><span class="glyphicon glyphicon-calendar"> Meet-ups</span></a>
+							</li>
+							<li>
+								<a href="#tours"><span class="glyphicon glyphicon-plane"> Tours</span></a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#threads">Threads</a>
+					</li>
+				</ul>
+			</div>
+		</div>		
+	</nav>
+
+	<!-- MAIN CONTENTS OF THE PAGE -->
+	<div class="container-fluid text-center" id="top">
+		<h1>Welcome to WICS</h1>
+		<p><em>It is our goal to promote &amp; and encourage women in the field of Computer Science</em></p>
+	</div>
+
+	<div class="container-fluid" id="meetings">
+		<h2>Meetings</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Topic</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Location</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Bootstrap</td>
+					<td>2/22/2017</td>
+					<td>12:30 - 1:30pm</td>
+					<td>Joy 210</td>
+				</tr>
+				<tr>
+					<td>TBD</td>
+					<td>3/1/2017</td>
+					<td>12:30 - 1:30pm</td>
+					<td>Joy 210</td>
+				</tr>
+				<tr>
+					<td>TBD</td>
+					<td>3/8/2017</td>
+					<td>12:30 - 1:30pm</td>
+					<td>Joy 210</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="container-fluid" id="officers">
+		<h2>WICS Officers, 2017</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Name</th>
+					<th>Year</th>
+					<th>Major(s)</th>					
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>President</td>
+					<td>Viveret Steele</td>
+					<td>Senior</td>
+					<td>CSS</td>
+				</tr>
+				<tr>
+					<td>Social Media</td>
+					<td>Michael</td>
+					<td>Junior</td>
+					<td>CSS</td>
+				</tr>
+				<tr>
+					<td>Treasurer</td>
+					<td>Sarah Snyder</td>
+					<td>N/A</td>
+					<td>CSS</td>
+				</tr>
+				<tr>
+					<td>N/A</td>
+					<td>Samantha Shoecraft</td>
+					<td>Junior</td>
+					<td>CSS</td>
+				</tr>
+				<tr>
+					<td>N/A</td>
+					<td>Bethany</td>
+					<td>Graduated</td>
+					<td>CSS</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="container-fluid" id="hackathons">
+		<h2>Hackathons</h2>
+		<table class="table table-bordered">			
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Location</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Code day</td>
+					<td>2/19/2017</td>
+					<td>12:00pm - 8:00pm</td>
+					<td>T-Mobile Headquarters</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="container-fluid" id="meet-ups">
+		<h2>Meet ups</h2>
+	</div>
+	<div class="container-fluid" id="tours"><h2>Company Tours</h2>
+		<table class="table table-bordered">			
+			<thead>
+				<tr>
+					<th>Company</th>
+					<th>Date</th>					
+					<th>Location</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Hootsuite</td>
+					<td>2/28/2017</td>					
+					<td>Vancouver, Canada</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="container-fluid" id="threads">
+		<h2>Threads</h2>
+		<div class="media">
+			<div class="media-left">
+				<img src="img/me.png" class="media-object logo"/>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">Michael Wilson, 2/19/2017</h4>
+				<p><a href="">Quick tips on learning bootstrap!</a></p>
+				<p>Boostrap provides a quick &amp; easy way to style your webpages! Not only that but Bootstrap...</p>
+			</div>
+		</div>
+		<div class="media">
+			<div class="media-left">
+				<img src="img/me.png" class="media-object logo"/>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">Michael Wilson, 2/11/2017</h4>
+				<p><a href="">5 quick tips to ace your next interview!</a></p>
+				<p>Like a lot of you I have always been pretty nervous when it comes to the onsite interview...</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
