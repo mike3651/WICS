@@ -31,7 +31,15 @@
 	<h1>Canvas Editor</h1>
 	<div id="main">	
 		<div class="row">	
-			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<div id="debug">
+					<h2>Debug mode</h2>
+					<p id="size"></p>
+					<p id="color"></p>
+					<p id="brush"></p>
+					<p id="location"></p>
+				</div>
+			</div>
 			<div id="canvas" class="col-sm-4"></div>
 			<div id="hot-key-reference" class="col-sm-4">
 				<table>
@@ -62,6 +70,10 @@
 					<tr>
 						<td>F</td>
 						<td>Changes to the size on the right of the current size</td>
+					</tr>
+					<tr>
+						<td>W</td>
+						<td>Toggles debug mode</td>
 					</tr>
 				</table>
 			</div>

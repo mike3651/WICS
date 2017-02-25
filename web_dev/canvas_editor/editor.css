@@ -1,8 +1,12 @@
 /* This is part of a two hour challenge
  * 
  * ©Michael Wilson */
-h1, #canvas, #size-chooser {
+h1, h2, #canvas, #size-chooser {
 	text-align: center;
+}
+
+#debug {
+	font-size: 20px;
 }
 
 #canvas {		
@@ -49,4 +53,8 @@ th {
 
 li {
 	text-decoration: line;
+}
+
+#debug {
+	visibility: hidden;
 }
