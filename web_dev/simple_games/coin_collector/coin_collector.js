@@ -1,5 +1,7 @@
 /* This is my javascript file
  * 
+ * This is part of an hour of code challenge 
+ *
  * ©Michael Wilson, 2017 */
 
 (function() {
@@ -114,6 +116,7 @@
 	}
 
 	// movement functionality
+	// param e -> The event that happened
 	function move(e) {
 		// grab the right player
 		var myPlayer = document.getElementsByClassName("player")[0];
@@ -141,8 +144,7 @@
 		}
 	}
 
-	// moves the player in a certain direction
-	// param myPlayer -> The player object
+	// moves the player in a certain direction	
 	function moveInDirection() {		
 		document.getElementById("direction").innerHTML = "Direction: " + direction;
 		var player_block = document.getElementsByClassName("player")[0];
@@ -196,6 +198,8 @@
 	}
 
 	// function that checks for collision
+	// param x -> The x position to check
+	// param y -> The y position to check
 	function checkCollision(x, y) {
 		// look at the positions of each coin		
 		for(var i = 0; i < current_coins.length; i++) {
