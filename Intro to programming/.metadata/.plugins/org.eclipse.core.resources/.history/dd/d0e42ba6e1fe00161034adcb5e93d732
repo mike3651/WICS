@@ -1,0 +1,15 @@
+/* General graph theory class
+ * 
+ * ©Michael Wilson, 2017
+ */
+public class GraphClient {
+	/* Keeps a reference to the graph */	
+	private static Graph myGraph;
+	
+	/* Kicks off the program 
+	 * 
+	 * @param theArgs Arguments from the command line */
+	public static void main(final String[] theArgs) {
+		
+	}
+}
