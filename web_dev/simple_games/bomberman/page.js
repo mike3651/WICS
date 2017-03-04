@@ -1,28 +1,44 @@
+/*
+ This is the javascript needed in order to make the game work 
+
+ Michael Wilson */
+
 (function() {
 	'use strict';
-
-	var timer = null;
+	
 	var GAME_SPEED = 1000;
 
-	var BOMB_SWITCH = 500;
-	var bomb_timer = null;
+	var BOMB_SWITCH = 500;	
 
 	var BOARD_WIDTH = 400;
 	var BOARD_HEIGHT = 400;
-	var explosion = [];
+	
 	var canvas;
 	var ctx;
 
 	var BAR_DISABLE = false;
 
+	// keeps track of lists of elements
+	var explosion = [];
+	var bomb_list = [];
+	var enemy_list = [];
+
 	// keeps track of how long the animation should be running
 	var BOMB_ANIMATION_TIME = 50;
+
+	// keeps track of all the timers
+	var timer = null;
+	var bomb_timer = null;
 	var explosion_timer = null;
+
+	// audio sources
+	var audio = $("audio");
+	
 
 	window.onload = function() {
 		setGameState();
 		document.addEventListener("keydown", movePlayer);
-		//startTimer();
+		startTimer();
 		canvas = document.getElementById("canvas");
 
 		ctx = canvas.getContext("2d");
@@ -46,6 +62,7 @@
 		$("#game-board").append(player);		
 	}
 
+	// function that starts generating the timer for generating enemy sprites
 	function startTimer() {
 		if(timer == null) {			
 			timer = setInterval(generateEnemies, GAME_SPEED);
@@ -56,7 +73,7 @@
 	}
 
 	function startBombTimer() {
-		if(bomb_timer == null) {			
+		if(bomb_timer == null) {						
 			bomb_timer = setInterval(animateBomb, BOMB_SWITCH);
 		} else {
 			clearInterval(bomb_timer);
@@ -66,7 +83,7 @@
 
 	// function that animates the bomb
 	function animateBomb() {
-		var bomb_list = $(".bomb");
+		bomb_list = $(".bomb");
 		for(var i = 0; i < bomb_list.length; i++) {
 			var myCount = 0;
 			var currValue = bomb_list[i].value;
@@ -76,10 +93,10 @@
 				bomb_list[i].style.backgroundColor = "yellow";				
 			}
 			if(currValue % 2 == 0) {
-				bomb_list[i].style.backgroundColor = "black";
+				bomb_list[i].style.backgroundColor = "brown";
 			}
 			if(currValue == 5) {
-				if(explosion_timer == null)		{						
+				if(explosion_timer == null){										
 					explosion_timer = setInterval(function() {
 						draw(x, y, myCount++);
 					}, 
@@ -93,12 +110,18 @@
 	}
 
 	function generateEnemies() {
-		var className = "food";
+		var className = "enemy";
 		var color = "rgb(" + Math.floor(Math.random() * 256) + ", " + Math.floor(Math.random() * 256)+ ", " + Math.floor(Math.random() * 256) + ")";
 
 		var x = Math.floor(Math.random() * parseInt($("#game-board").css("width")) - 10) + 10;
 		var y = Math.floor(Math.random() * parseInt($("#game-board").css("height")) -10) + 10;
-		//alert("x: " + x + "\ny: " + y);
+		var enemy = {
+			"className": className,
+			"color": color,
+			xPosition: x,
+			yPosition: y			
+		};
+		enemy_list.push(enemy);
 		makeFood(className, color, x, y);
 	}
 
@@ -175,8 +198,18 @@
 
 	// updates the location of the bomb
 	function updateBomb(bomb) {
+		for(var i = 0; i < enemy_list.length; i++) {			
+			if ((bomb.x >= enemy_list[i].xPosition && ((bomb.x + bomb.size) <= (enemy_list[i].xPosition + 10))) 
+				&& (bomb.y >= enemy_list[i].yPosition && ((bomb.y + bomb.size) <= (enemy_list[i].yPosition + 10)))) {
+				enemy_list["color"] = "blue";
+				// get the enemy
+				$(".enemy")[i].remove();
+				console.log("enemy hit");
+			}			
+		}
+
 		bomb.x += bomb.xSpeed;
-		bomb.y += bomb.ySpeed;
+		bomb.y += bomb.ySpeed;		
 		bomb.size *= 0.98;
 	}
 })();
