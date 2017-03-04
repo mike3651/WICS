@@ -1,0 +1,28 @@
+/* Style for the photos in the gallery */
+.gallery-photo {
+	width: 300px;
+	height: 300px;
+	border-radius: 25%;
+}
+
+.photo-with-info:hover {
+	opacity: 0.6;
+	cursor: pointer;
+	border: 5px solid #ecffe6;
+}
+
+div {
+	margin-bottom: 10px;
+}
+
+#welcome, h2{
+	text-align: center;
+}
+
+.quote {
+	font-style: italic;	
+}
+
+#welcome {
+	margin-top: 80px;
+}
