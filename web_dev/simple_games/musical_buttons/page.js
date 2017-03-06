@@ -3,7 +3,7 @@
  * ©Michael Wilson 2017 */
 (function() {
 	var timer = null;
-	var speed = 50;
+	var speed = 35;
 	var drop_time = 0;
 
 	// keeps track of the scoring
@@ -21,6 +21,9 @@
 
 	var audio;
 
+	var state_changed = false;	
+	var color;
+
 	window.onload = function() {
 		addNotes();
 		document.addEventListener("keydown", playNote);
@@ -30,7 +33,7 @@
 	// function that drops a note
 	function startGame() {
 		audio = $("audio");
-		if(timer == null) {
+		if(timer == null) {			
 			setInterval(dropNote, speed);
 		} else {
 			clearInterval(timer);
@@ -51,6 +54,7 @@
 	}
 
 	// function that plays a note
+	// param -> e: The event that occurred
 	function playNote(e) {		
 
 		// a note
@@ -89,32 +93,36 @@
 		drop_time++;		
 		$("#note-score").html("Notes: " + notes_hit + "/" + total_notes);
 		var percent = Math.round(notes_hit/total_notes * 100);
-		$("#score-percentage").html("Success: " + percent + "%");
+		$("#score-percentage").html("Success: " + percent + "%");		
+
+		color = $("#success-bar").css("background-color");
+
+		// deals with the color of the success bar
 		if(percent < 33) {
 			$("#success-bar").css("background-color", "red");
-		} else if (percent < 50) {
+		} else if (percent < 66) {
 			$("#success-bar").css("background-color", "yellow");
 		} else {
-			$("#success-bar").css("background-color", "green");
+			$("#success-bar").css("background-color", "green");			
 		}
-		if(drop_time % 6 == 0) {
-			total_notes++;
+		if(drop_time % 6 == 0) {			
 			makeNote(x_positions[choice]);
 		}
+		stateChange($("#success-bar").css("background-color"));
 
 		falling_notes = $(".falling-note");
 		// this method updates the positions of the notes
 		for(var i = 0; i < falling_notes.length; i++) {
 			falling_notes[i].style.top = parseInt(falling_notes[i].style.top) + 10 + "px";
 			if(parseInt(falling_notes[i].style.top) > window.innerHeight - 50) {
+				total_notes++;
 				falling_notes[i].remove();				
 			}
 		}
-
 	}
 
 	// function that creates a note an appends it to the screen
-	// param -> left position of the object to be made
+	// param -> left: The position of the object to be made
 	function makeNote(left) {
 		var note = document.createElement("div");
 		note.className = "falling-note";
@@ -125,7 +133,8 @@
 	}
 
 	// function that checks if a note was hit
-	// param -> note that was pressed
+	// param -> top: The top property of the note
+	// param -> left: The left property of the note
 	function hitNote(top, left) {		
 		for(var i = 0; i < falling_notes.length; i++) {
 			console.log("comparing " + top + " to " + parseInt(falling_notes[i].style.top));
@@ -135,6 +144,23 @@
 				total_notes++;
 				falling_notes[i].remove();
 				return true;
+			}
+		}
+	}
+
+	// function that checks to see if the state of the bar changed
+	// param -> current_color: State of the sucess bar
+	function stateChange(current_color) {
+		if(color != current_color) {
+			// check the colors			
+			// upgrade
+			if(current_color == "rgb(0, 255, 0)" || 
+				current_color == "rgb(255, 255, 0)" && color == "rgb(255, 0, 0)") {
+				audio[5].play();
+
+			// downgrade
+			} else {
+				audio[6].play();
 			}
 		}
 	}

@@ -1,6 +1,8 @@
 body {
 	background-color: black;
 	color: lightgreen;	
+	font-size: 24px;
+	font-family: monospace;
 }
 
 #keys, #options-pane {
