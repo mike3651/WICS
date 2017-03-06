@@ -10,8 +10,10 @@
 
 	var BOMB_SWITCH = 500;	
 
-	var BOARD_WIDTH = 400;
-	var BOARD_HEIGHT = 400;
+	var BOARD_WIDTH;
+	var BOARD_HEIGHT;
+
+	var player_size = 10;
 	
 	var canvas;
 	var ctx;
@@ -32,10 +34,16 @@
 	var explosion_timer = null;
 
 	// audio sources
-	var audio = $("audio");
+	var audio;
+
+	// ALL OF THE FOLLOWING IS FOR THE DEBUGGING
+	
 	
 
 	window.onload = function() {
+		BOARD_WIDTH = $("#game-board").width();
+		BOARD_HEIGHT = $("#game-board").height();
+		audio = $("audio");
 		setGameState();
 		document.addEventListener("keydown", movePlayer);
 		startTimer();
@@ -113,8 +121,8 @@
 		var className = "enemy";
 		var color = "rgb(" + Math.floor(Math.random() * 256) + ", " + Math.floor(Math.random() * 256)+ ", " + Math.floor(Math.random() * 256) + ")";
 
-		var x = Math.floor(Math.random() * parseInt($("#game-board").css("width")) - 10) + 10;
-		var y = Math.floor(Math.random() * parseInt($("#game-board").css("height")) -10) + 10;
+		var x = Math.round(Math.random() * parseInt($("#game-board").css("width")) - player_size);
+		var y = Math.round(Math.random() * parseInt($("#game-board").css("height")) - player_size);
 		var enemy = {
 			"className": className,
 			"color": color,
@@ -142,20 +150,66 @@
 		var x = parseInt($("#player").css("left"));
 		var y = parseInt($("#player").css("top"));
 
-		// move up
+		var moveable;
+
+
+		// MOVE DOWN
 		if(e.keyCode == 40) {
-			$("#player").css("top", 10 + parseInt($("#player").css("top")) + "px");
-		} else if(e.keyCode == 38) {
-			$("#player").css("top",parseInt($("#player").css("top")) - 10 + "px");
-		} else if(e.keyCode == 37) {
-			$("#player").css("left",parseInt($("#player").css("left")) - 10 + "px");
-		} else if(e.keyCode == 39) {
-			$("#player").css("left",parseInt($("#player").css("left")) + 10 + "px");
-		} else if(e.keyCode == 32) {					
+			if(parseInt($("#player").css("top")) < BOARD_HEIGHT - player_size) 
+				$("#player").css("top", player_size + parseInt($("#player").css("top")) + "px");
+			else 
+				audio[2].play();
+
+			// set state of moveable object
+			moveable = parseInt($("#player").css("top")) < BOARD_HEIGHT - player_size;
+			document.getElementById("move-down").innerHTML = "Can move down: " + moveable;
+
+
+		// MOVE UP
+		} 
+		if(e.keyCode == 38) {
+			if(parseInt($("#player").css("top")) > 0)
+				$("#player").css("top",parseInt($("#player").css("top")) - player_size + "px");
+			else 
+				audio[2].play();
+
+			moveable = parseInt($("#player").css("top")) > 0;
+			document.getElementById("move-up").innerHTML = "Can move up: " + moveable;
+
+
+		// MOVE LEFT
+		} 
+		if(e.keyCode == 37) {
+			if(parseInt($("#player").css("left")) > 0)
+				$("#player").css("left",parseInt($("#player").css("left")) - player_size + "px");
+			else
+				audio[2].play();
+
+			moveable = parseInt($("#player").css("left")) > 0;
+			document.getElementById("move-left").innerHTML = "Can move left: " + moveable;
+
+
+		// MOVE RIGHT
+		} 
+		if(e.keyCode == 39) {
+			if(parseInt($("#player").css("left")) < BOARD_WIDTH + player_size)
+				$("#player").css("left",parseInt($("#player").css("left")) + 10 + "px");
+			else
+				audio[2].play();
+
+			moveable = parseInt($("#player").css("left")) < BOARD_WIDTH + player_size;
+			document.getElementById("move-right").innerHTML = "Can move right: " + moveable;
+
+		}
+		if(e.keyCode == 32) {					
 			if(!BAR_DISABLE) {
+				audio[0].play();
 				makeFood("bomb", "black", x, y, 1);
+			} else {
+				audio[1].play();
 			}
 			BAR_DISABLE = true;
+			document.getElementById("drop-bomb").innerHTML = "Can drop bomb: " + !BAR_DISABLE;
 		}
 	}
 
@@ -182,6 +236,7 @@
 			clearCanvas();
 			BAR_DISABLE = false;			
 		}	
+		document.getElementById("drop-bomb").innerHTML = "Can drop bomb: " + !BAR_DISABLE;
 	}
 
 	// function that clears the canvas
@@ -204,7 +259,7 @@
 				enemy_list["color"] = "blue";
 				// get the enemy
 				$(".enemy")[i].remove();
-				console.log("enemy hit");
+				// console.log("enemy hit");
 			}			
 		}
 
