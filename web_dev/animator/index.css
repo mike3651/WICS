@@ -1,0 +1,34 @@
+body {
+	text-align: center;	
+}
+
+#game-area {	
+	border: solid 1px black;
+	height: 500px;
+	width: 500px;
+	position: relative;	
+	z-index: -2;
+}
+
+#player {
+	position: absolute;
+	background-color: lightgreen;
+}
+
+.bomb {
+	z-index: -1;
+	position: absolute;
+	background-color: brown;
+}
+
+/* Select all elements that end with bomb attribute */
+div[class^="explosion"] {
+	background-color: red;
+	position: absolute;
+}
+
+/* Grid piece */
+.grid-piece {
+	background-color: tan;
+	position: absolute;
+}

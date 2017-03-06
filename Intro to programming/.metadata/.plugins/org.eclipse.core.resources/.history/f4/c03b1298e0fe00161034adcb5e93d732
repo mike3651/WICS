@@ -1,0 +1,13 @@
+/* This class represents a common graph
+ *  
+ *  ©Michael Wilson, 2017
+ */
+
+import java.util.*;
+
+public class Graph {
+	/* The set of edges */
+	private Set<Edge>
+	
+	/* The set of vertices */
+}

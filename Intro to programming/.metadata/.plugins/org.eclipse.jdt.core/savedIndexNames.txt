@@ -1,0 +1,5 @@
+INDEX VERSION 1.127+/Users/michaelwilson/Desktop/CSS/WICS/Intro to programming/.metadata/.plugins/org.eclipse.jdt.core
+4012262689.index
+1040477355.index
+710123557.index
+2976247621.index

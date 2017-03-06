@@ -1,0 +1,8 @@
+/* This class represents an edge in a graph
+ * 
+ * ©Michael Wilson, 2017
+ */
+public class Edge {
+	/* The source and destination nodes of this edge */
+	private final Vertex src, dest;
+}
